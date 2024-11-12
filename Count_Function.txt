@@ -1,0 +1,25 @@
+main.tf:
+provider "azurerm" {
+  version         = "=2.4.0"
+  subscription_id = "dad95817-dfb9-4e87-a075-cd5c7da61d9d"
+  client_id       = "3ece50b0-d8d7-4dfa-8aa9-455ffa6d9ef3"
+  client_secret   = "L72-7_Kh~DbTlKBzxo3plYYDK1HD-Lev69"
+  tenant_id       = "ae3ee3ae-cc1c-4edd-b3c1-4f141e64fc42"
+  features {}
+}
+
+resource "azurerm_resource_group" "rg" {
+count = 3
+name = "${var.rgname}-${count.index}"
+location = var.loc
+}
+
+variable.tf:
+
+variable "location" {
+  description = "The Azure Region in which all resources in this example should be created."
+  default     = "eastus"
+}
+Variable “rgname” {
+Default = “testrg”
+}
